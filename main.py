@@ -1,21 +1,22 @@
 from ursina import *
-class Test_cube(Entity):
-    def __init__(self):
+from ursina.prefabs.first_person_controller import  FirstPersonController
+class  Voxel(Button):
+    def __init__(self, position = (0,0,0)):
         super().__init__(
-            model ='cube',
-            color = color.white,
-            texture = 'white_cube'
-            rotation = Vec3(0,0,0)
-            )
-def update():
-    if held_keys['a']:
-        test_square.x -= 3 * time.dt
-    if held_keys['d']:
-        test_square.x += 3 * time.dt
-app = Ursina()
-test_square = Entity (model = 'quad', color = color.red, scale = (1,4), position = (5,4 ))
-sans = Entity (model = 'quad', texture = 'sans.png')
+         parent = scene,
+         position = position,
+         model = 'cube',
+         origin_y = 0.5,
+         texture = 'white_cube',
+         color = color.white,
+         highlight_color = color.lime)
 
-test_cube = Test_cube()
+app = Ursina()
+
+for z in range (8):
+    for x in range (8):
+        voxel = Voxel(position = (x,0,z))
+
+player = FirstPersonController()
 
 app.run()
