@@ -1,9 +1,4 @@
-def func_outer():
-    x = 2
-    print('x равно', x)
-    def func_inner():
+from ursina import *
 
-        x = 51123214
-    func_inner()
-    print('Локальное x сменилось на', x)
-func_outer()
+app = Ursina()
+app.run()
